@@ -15,10 +15,20 @@ public class Slutprojekt extends Canvas implements Runnable{
 
     private boolean isTimeToClear;
 
+    private boolean redtime;
+
+    private boolean blacktime;
+
+    private boolean greentime;
+
+
+
+
+
 
     public Slutprojekt() {
         setSize(600,400);
-        JFrame frame = new JFrame();
+        JFrame frame = new JFrame("C for clear, r for red, g for green and b for black");
         frame.add(this);
         this.addKeyListener(new MyKeyListener());
         this.addMouseMotionListener(new MyMouseMotionListener());
@@ -49,6 +59,20 @@ public class Slutprojekt extends Canvas implements Runnable{
             g.clearRect(10,20,getWidth(),getHeight());
             isTimeToClear = false;
         }
+if (redtime == true) {
+    g.setColor(Color.red);
+
+
+}
+if (blacktime == true) {
+    g.setColor(Color.black);
+
+}
+if (greentime == true) {
+    g.setColor(Color.green);
+
+}
+
 
         g.fillOval (pressX, pressY, 5,5 );
 
@@ -147,6 +171,8 @@ public class Slutprojekt extends Canvas implements Runnable{
     public class MyKeyListener implements KeyListener {
 
 
+
+
         @Override
         public void keyTyped(KeyEvent e) {
 
@@ -156,6 +182,21 @@ public class Slutprojekt extends Canvas implements Runnable{
         public void keyPressed(KeyEvent e) {
             if (e.getKeyChar() == 'c' )  {
                 isTimeToClear = true;
+            }
+            if (e.getKeyChar() == 'r') {
+                redtime = true;
+                blacktime =false;
+                greentime = false;
+            }
+            if (e.getKeyChar() == 'b') {
+                blacktime = true;
+                redtime =false;
+                greentime = false;
+            }
+            if (e.getKeyChar() == 'g') {
+                greentime = true;
+                redtime = false;
+                blacktime = false;
             }
         }
 
